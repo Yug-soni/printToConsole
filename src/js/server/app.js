@@ -1,21 +1,30 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
-const { over, chunk } = require('lodash');
 
 const server = http.createServer( (req, res) => {
 
     const pathname = url.parse(req.url, true).pathname;
     const urlget = url.parse(req.url, true);
 
+    console.log('Path name :- '+pathname);
+
     if(pathname === '/') {
 
         res.writeHead(200, {'Content-type': 'text/html'});
         fs.readFile(`${__dirname}/../../index.html`, 'utf-8', (err, data) => {
+            //console.log(err);
             res.end(data);
         });
 
     } 
+
+    else if(pathname === '/js/index.js') {
+        res.writeHead(200, {'Content-type': 'script'});
+        fs.readFile(`${__dirname}/../index.js`, 'utf-8', (err, data) => {
+            res.end(data);
+        });
+    }
     
     else if (pathname === '/add-message') {
 
@@ -33,6 +42,6 @@ const server = http.createServer( (req, res) => {
 
 });
 
-server.listen(9999, '127.0.0.1', () => {
+server.listen(8434, '127.0.0.1', () => {
     console.log("Server started.");
 });
