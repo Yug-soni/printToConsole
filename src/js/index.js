@@ -1,13 +1,11 @@
-const form = document.querySelector('.myForm');
+import {elements} from './views/base';
 
-form.addEventListener('submit', e => {
+elements.form.addEventListener('submit', e => {
     e.preventDefault();
 });
 
-const button = document.querySelector('.submit');
-button.addEventListener('click', () => {
-    const message = document.querySelector('#message');
-    const value = message.value;
+elements.button.addEventListener('click', () => {
+    const value = elements.message.value;
     console.log(value);
     message.value = '';
 });
