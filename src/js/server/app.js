@@ -2,6 +2,9 @@ const fs = require('fs');
 const http = require('http');
 const url = require('url');
 
+var indexdata = fs.readFileSync(`${__dirname}/../index.js`);
+var viewdata = fs.readFileSync(`${__dirname}/../views/base.js`);
+
 const server = http.createServer( (req, res) => {
 
     const pathname = url.parse(req.url, true).pathname;
@@ -20,10 +23,13 @@ const server = http.createServer( (req, res) => {
     } 
 
     else if(pathname === '/js/index.js') {
-        res.writeHead(200, {'Content-type': 'script'});
-        fs.readFile(`${__dirname}/../index.js`, 'utf-8', (err, data) => {
-            res.end(data);
-        });
+        res.writeHead(200, {'Content-type': 'text/javascript'});
+        res.end(indexdata);
+    }
+
+    else if(pathname === '/js/views/base') {
+        res.writeHead(200, {'Content-type': 'text/javascript'});
+        res.end(viewdata);
     }
     
     else if (pathname === '/add-message') {

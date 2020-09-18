@@ -1,4 +1,4 @@
-import {elements} from './views/base'
+import {elements} from './views/base';
 
 
 elements.form.addEventListener('submit', e => {
