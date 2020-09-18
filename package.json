@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "chat",
   "version": "1.0.0",
   "description": "chatting web app",
