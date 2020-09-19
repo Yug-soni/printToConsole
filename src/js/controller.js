@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import {elements} from './views/base';
+import {elements} from './views/base.js';
 
 /*
 elements.form.addEventListener('submit', e => {
