@@ -8,12 +8,12 @@
 <body>
     <p>Enter the message see that message on the console window.</p><br>
     <p>Use Ctrl+Shift+J to open console.</p><br>
-    <form action="/add-message" class="myForm">
-        Message: <input type="text" id="message">
+    <form action="/add-message" method="POST" class="myForm">
+        Message: <input name="message" type="text" id="message">
         <button type="submit" class="submit">submit</button>
     </form>
-    <div class="add-message">
-    
+    <div class="add">
+        
     </div>
     <script type="module" src="js/index.js"></script>
 </body>
