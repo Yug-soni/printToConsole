@@ -8,7 +8,7 @@ const server = http.createServer( (req, res) => {
     // To match file ending with .js
     const re=/^(?!.*test\.js).*\.js$/;
     const pathname = url.parse(req.url, true).pathname;
-    const urlget = url.parse(req.url, true);
+    //const urlget = url.parse(req.url, true);
 
     console.log('Path name :- '+pathname);     
 
@@ -31,10 +31,20 @@ const server = http.createServer( (req, res) => {
     }
     
     else if (pathname === '/add-message') {
-        res.writeHead(200, {'Content-type': 'text/html'});
-        fs.readFile(`${__dirname}/templates/${pathname}.html`, 'utf-8', (err, data) => {
+        fs.readFile(`${__dirname}/templates/${pathname}.html`, 'utf-8', (err, file) => {
             console.log(err);
-            res.end(data);
+            var body = '';
+            req.on('data', data => {
+                body += data;
+                console.log(`Partial body --> ${data}`);
+            });
+            req.on('end', () => {
+                console.log(body);
+                res.writeHead(200, {'Content-type': 'text/html'});
+                body = body.replace(/\W/g, ' ').replace('message',' ');
+                file = file.replace('{MESSAGE}', body);
+                res.end(file);
+            });
         });
     }
     
